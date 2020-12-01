@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1606856721 source:c:\users\lcs20\documents\repositorios\perceptronneuron\perceptronemc\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
