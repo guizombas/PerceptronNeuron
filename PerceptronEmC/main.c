@@ -3,7 +3,7 @@
 #include <time.h>
 
 int main(void) {
-  printf("Treinamento de Rede Neural para somar dois numeros iguais\n\n");
+  printf("Neuronio perceptron somador de dois numeros iguais\n\n");
 
   srand(time(NULL));
 
