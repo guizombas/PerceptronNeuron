@@ -4,10 +4,13 @@ inicio:			.asciiz "Neuronio perceptron somador de dois numeros iguais\n"
 msg1:			.asciiz "\nDigite a taxa de aprendizado no neuronio: "
 msg2:			.asciiz "\nDigite o numero de epocas que deseja treinar: "
 msg3:			.asciiz "\nDigite o numero de dados para treinamento: "
-pesoUm: .float 0 # Onde vai salvar o valor aleatorio
-txAprendizado: .float 0 # Onde vai salvar a taxa de aprendizado
-qtdEpocas: .word 0 # Onde vai salvar a quantidade de epocas desejadas para treinar
-qtdDados: .word 0 # Quantidade de dados que seram informados para o treinamento
+preencheDados: 		.asciiz "\nDado: "
+	
+pesoUm: 			.float 0 # Onde vai salvar o valor aleatorio
+txAprendizado: 		.float 0 # Onde vai salvar a taxa de aprendizado
+qtdEpocas: 		.word 0 # Onde vai salvar a quantidade de epocas desejadas para treinar
+qtdDados: 		.word 0 # Quantidade de dados que seram informados para o treinamento
+dados:			.word 0 # Vetor de dados
 								
 			.text # Daqui pra frente faz o codigo
 
@@ -59,5 +62,41 @@ qtdDados: .word 0 # Quantidade de dados que seram informados para o treinamento
 			lw $a0, qtdDados # TESTE carregar a qtdDados no registrador f12 para imprimir
 			addi $v0, $zero, 1 # TESTE imprimir a qtdDados
 			syscall
+			
+			lw $s0, qtdDados
+			add $t0, $zero, $zero
+			addi $t4, $zero, 4
+			
+                        FOR0:
+                        		slti $t1, $t0, $s0
+                        		beq $t1, $zero, FIMFOR0
+                        		mul $t2, $t0, $t4
+				# Solicita o dado atual do vetor de dados
+				addi $v0, $zero, 4
+				la $a0, preencheDados
+				syscall
+				# le e armazena o dado no vetor
+				addi $v0, $zero, 5
+				syscall
+				sw $v0, qtdDados
+				lw $t3, qtdDados # TESTE carregar a qtdDados no registrador f12 para imprimir
+				addi $v0, $zero, 1 # TESTE imprimir a qtdDados
+				syscall	
+				addi $t0, $t0, 1
+                        		j FOR0	
+                        FIMFOR0: 
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         
                         jr $ra # finaliza
